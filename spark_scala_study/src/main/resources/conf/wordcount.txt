@@ -1,0 +1,9 @@
+Alpha Components
+
+When new components are added to Spark, they may initially be marked as “alpha”. Alpha components do not have to abide by the above guidelines, however, to the maximum extent possible, they should try to. Once they are marked “stable” they have to follow these guidelines.
+
+API compatibility
+
+An API is any public class or interface exposed in Spark that is not marked as “developer API” or “experimental”. Release A is API compatible with release B if code compiled against release A compiles cleanly against B. Currently, does not guarantee that a compiled application that is linked against version A will link cleanly against version B without re-compiling. Link-level compatibility is something we’ll try to guarantee in future releases.
+
+Note, however, that even for features “developer API” and “experimental”, we strive to maintain maximum compatibility. Code should not be merged into the project as “experimental” if there is a plan to change the API later, because users expect the maximum compatibility from all available APIs.

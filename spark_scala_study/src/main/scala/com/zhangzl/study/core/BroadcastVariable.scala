@@ -11,6 +11,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   * Project Name : technology_sophisticated_study
   */
 object BroadcastVariable {
+
     def main(args: Array[String]): Unit = {
 
         val conf = new SparkConf().setAppName("BroadcastVariable").setMaster("local")
