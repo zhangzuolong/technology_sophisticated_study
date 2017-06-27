@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--xml 装配的方式-->
+
+    <bean id="knight" class="com.zhangzl.study.spring.knights.BraveKnight">
+        <constructor-arg ref="quest"/>
+    </bean>
+
+    <bean id="quest" class="com.zhangzl.study.spring.knights.SlayDragonQuest">
+        <constructor-arg value="#{T(System).out}"/>
+    </bean>
+
+    <bean id="minstrel" class="com.zhangzl.study.spring.knights.Minstrel">
+        <constructor-arg value="#{T(System).out}"/>
+    </bean>
+
+    <!--定义切面-->
+    <!--
+        如果使用aop:advisor配置,那么切面逻辑必须要实现advice接口才行!否则会失败!
+        如果是<aop:aspect>配置,编写一般的方法就可以了,然后在切面配置中指定具体的方法名称!
+    -->
+    <aop:config>
+        <!--切面的代码-->
+        <aop:aspect ref="minstrel">
+            <!--定义切点-->
+<!--            <aop:pointcut id="embark" expression="execution(* *.embarkOnQuest(..))"/>-->
+            <aop:pointcut id="embark" expression="execution(* com.zhangzl.study.spring.knights.Knight.embarkOnQuest(..))"/>
+            <aop:before method="singBeforeQuest" pointcut-ref="embark"/><!--声明前置通知-->
+            <aop:after method="singAfterQuest" pointcut-ref="embark"/><!--声明后置通知-->
+        </aop:aspect>
+    </aop:config>
+
+</beans>
