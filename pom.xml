@@ -20,7 +20,10 @@
 		<module>spark_scala_study</module>
 		<module>spark_java_study</module>
 		<module>spring_study</module>
-	</modules>
+        <module>java_study</module>
+        <module>storm_study</module>
+        <module>springboot_study</module>
+    </modules>
 
 	<dependencies>
 		<dependency>

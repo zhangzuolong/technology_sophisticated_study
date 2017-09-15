@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+    <!--创建连接工厂-->
+<!--    &lt;!&ndash;利用spring来创建&ndash;&gt;
+    <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory" p:brokerURL="tcp://localhost:61616"/>-->
+    <!--利用amq来创建-->
+    <amq:connectionFactory id="connectionFactory" brokerURL="tcp://localhost:61616"/>
+
+    <!--声明ActiveMQ消息目的地-->
+    <!--目的地是一个队列-->
+    <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue" c:_="spitter.queue"/>
+<!--
+    &lt;!&ndash;目的地是一个主题&ndash;&gt;
+    <bean id="topic" class="org.apache.activemq.command.ActiveMQTopic" c:_="spitter.topic"/>
+
+    &lt;!&ndash;physicalName 指定消息通道的名称&ndash;&gt;
+    <amq:queue id="spitterQueue" physicalName="spitter.alert.quere"/>
+    <amq:topic id="spitterTitle" physicalName="spitter.alert.topic"/>
+-->
+    <!--使用JmsTemplate 优化-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"/>
+
+    <bean id="spittleAlertHandle" class="com.zhangzl.study.spring.message.jms.alerts.SpittleAlertHandle"/>
+    <!--将spittleAlertHandle 转换为消息驱动的POJO-->
+    <jms:listener-container connection-factory="connectionFactory">
+        <jms:listener destination="spitter.alert.queue" ref="spittleAlertHandle" method="handleSpittleAlert"/>
+    </jms:listener-container>
+
+</beans>

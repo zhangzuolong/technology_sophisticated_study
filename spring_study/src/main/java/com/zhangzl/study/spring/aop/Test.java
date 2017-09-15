@@ -15,5 +15,4 @@ public class Test {
         performance.perform();
         ((ClassPathXmlApplicationContext)appContext).close();
     }
-
 }

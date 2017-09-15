@@ -1,5 +1,6 @@
 package com.zhangzl.study.spring.aop;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,21 @@ public class Audience {
 
     @Pointcut("execution( * com.zhangzl.study.spring.aop.Performance.*(..))")
     public void performance(){
+    }
+
+    /**
+     * 环绕通知
+     */
+    @Around("performance()")
+    public void watchPerformance(ProceedingJoinPoint joinPoint){
+        try{
+            System.out.println("关闭手机");
+            System.out.println("就座");
+            joinPoint.proceed();
+            System.out.println("演出成功");
+        }catch (Throwable e){
+            System.out.println("异常。。。。");
+        }
     }
 
     /**
