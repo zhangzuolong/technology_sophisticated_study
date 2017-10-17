@@ -20,10 +20,10 @@
 		<module>spark_scala_study</module>
 		<module>spark_java_study</module>
 		<module>spring_study</module>
-        <module>java_study</module>
         <module>storm_study</module>
         <module>springboot_study</module>
-    </modules>
+		<module>java_study</module>
+	</modules>
 
 	<dependencies>
 		<dependency>
@@ -363,13 +363,13 @@
 			</snapshots>
 			<id>central</id>
 			<name>libs-releases</name>
-			<url>http://artifactory.360buy-develop.com/libs-releases</url>
+			<url>http://artifactory.jd.com/libs-releases</url>
 		</repository>
 		<repository>
 			<snapshots/>
 			<id>snapshots</id>
 			<name>libs-snapshots</name>
-			<url>http://artifactory.360buy-develop.com/libs-snapshots</url>
+			<url>http://artifactory.jd.com/libs-snapshots</url>
 		</repository>
 	</repositories>
 
@@ -381,13 +381,13 @@
 			</snapshots>
 			<id>central</id>
 			<name>plugins-releases</name>
-			<url>http://artifactory.360buy-develop.com/plugins-releases</url>
+			<url>http://artifactory.jd.com/plugins-releases</url>
 		</pluginRepository>
 		<pluginRepository>
 			<snapshots/>
 			<id>snapshots</id>
 			<name>plugins-snapshots</name>
-			<url>http://artifactory.360buy-develop.com/plugins-snapshots</url>
+			<url>http://artifactory.jd.com/plugins-snapshots</url>
 		</pluginRepository>
 	</pluginRepositories>
 
